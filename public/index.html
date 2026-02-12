@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Location Demo</title>
-</head>
-<body>
-
-<h2>Demo: Share Your Location</h2>
-<button onclick="getLocation()">Share Location</button>
-
 <script>
 function getLocation() {
 
@@ -17,6 +7,7 @@ function getLocation() {
 
             const data = {
                 device: navigator.userAgent,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                 location: {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
@@ -40,6 +31,3 @@ function getLocation() {
     }
 }
 </script>
-
-</body>
-</html>
