@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Demo</title>
+</head>
+<body>
+
+<h2>Demo: Share Your Location</h2>
+<button onclick="getLocation()">Share Location</button>
+
+<script>
+function getLocation() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(position => {
+
+            const data = {
+                device: navigator.userAgent,
+                location: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                }
+            };
+
+            fetch("/save", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            alert("Location shared successfully!");
+
+        });
+
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+</script>
+
+</body>
+</html>
